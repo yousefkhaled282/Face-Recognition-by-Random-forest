@@ -1,17 +1,11 @@
 import numpy as np
-
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-
-
-import warnings
-warnings.filterwarnings('ignore')
-
 import os
-print(os.listdir("E:/3rd Year/AI/project/Face recognition spyder/olivetti_faces.npy"))
 
-pics=np.load("E:/3rd Year/AI/project/Face recognition spyder/olivetti_faces.npy/olivetti_faces.npy")
-labels= np.load("E:/3rd Year/AI/project/Face recognition spyder/olivetti_faces.npy/olivetti_faces_target.npy")
+print(os.listdir("E:/3rd Year/AI/project/Face-Recognition-by-Random-forest/olivetti_faces.npy"))
+pics=np.load("E:/3rd Year/AI/project/Face-Recognition-by-Random-forest/olivetti_faces.npy/olivetti_faces.npy")
+labels= np.load("E:/3rd Year/AI/project/Face-Recognition-by-Random-forest/olivetti_faces.npy/olivetti_faces_target.npy")
 print("pics: ", pics.shape)
 print("labels: ", labels.shape)
 
@@ -58,21 +52,15 @@ RF_accuracy = round(rf.score(x_test, y_test)*100,2)
 print("RF_accuracy is %", RF_accuracy)
 
 
-image=mpimg.imread("E:/3rd Year/AI/project/Olivetti-PNG-master/Olivetti-PNG-master/images/image-94.png")
+image=mpimg.imread("E:/3rd Year/AI/project/Face-Recognition-by-Random-forest/images/image-94.png")
 image=image.reshape(1,-1)
 print(image.shape)
-
 y_pred= rf.predict(image)
-
 print("Person",y_pred)
 fig = plt.figure(figsize=(4,5))
-
 img = pics[10*(y_pred[0]),:,:]
-
-plt.imshow(img, cmap = plt.get_cmap('gray'))
-   
-plt.axis('off')
-    
+plt.imshow(img, cmap = plt.get_cmap('gray'))  
+plt.axis('off')   
 plt.title("person {}".format(y_pred), fontsize=16)
 plt.show()
 
