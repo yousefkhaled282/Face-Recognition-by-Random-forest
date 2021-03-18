@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import os
 
+import warnings
+warnings.filterwarnings('ignore')
+
 print(os.listdir("E:/3rd Year/AI/project/Face-Recognition-by-Random-forest/olivetti_faces.npy"))
 pics=np.load("E:/3rd Year/AI/project/Face-Recognition-by-Random-forest/olivetti_faces.npy/olivetti_faces.npy")
 labels= np.load("E:/3rd Year/AI/project/Face-Recognition-by-Random-forest/olivetti_faces.npy/olivetti_faces_target.npy")
@@ -27,7 +30,7 @@ Ydata = labels.reshape(-1,1) # store labels in Ydata
 
 
 from sklearn.model_selection import train_test_split
-x_train, x_test, y_train, y_test = train_test_split(Xdata, Ydata, test_size = 0.241, random_state=45)
+x_train, x_test, y_train, y_test = train_test_split(Xdata, Ydata, test_size = 0.2, random_state=45)
 
 print("x_train: ",x_train.shape)
 print("x_test: ",x_test.shape)
@@ -51,12 +54,11 @@ rf.fit(x_train, y_train)
 RF_accuracy = round(rf.score(x_test, y_test)*100,2)
 print("RF_accuracy is %", RF_accuracy)
 
-
-image=mpimg.imread("E:/3rd Year/AI/project/Face-Recognition-by-Random-forest/images/image-94.png")
+image=mpimg.imread("E:/3rd Year/AI/project/Face-Recognition-by-Random-forest/images/image-8.png")
 image=image.reshape(1,-1)
 print(image.shape)
 y_pred= rf.predict(image)
-print("Person",y_pred)
+
 fig = plt.figure(figsize=(4,5))
 img = pics[10*(y_pred[0]),:,:]
 plt.imshow(img, cmap = plt.get_cmap('gray'))  
