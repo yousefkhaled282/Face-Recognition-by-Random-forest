@@ -25,9 +25,9 @@ for i in range(1,columns*rows+1):
     
 plt.suptitle("There are 40 distinct people in the dataset", fontsize=22)
 plt.show()
+
 Xdata = pics # store images in Xdata
 Ydata = labels.reshape(-1,1) # store labels in Ydata
-
 
 from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(Xdata, Ydata, test_size = 0.2, random_state=45)
@@ -53,12 +53,9 @@ rf = RandomForestClassifier(n_estimators=400,random_state=1)
 rf.fit(x_train, y_train)
 RF_accuracy = round(rf.score(x_test, y_test)*100,2)
 print("RF_accuracy is %", RF_accuracy)
-
-image=mpimg.imread("E:/3rd Year/AI/project/Face-Recognition-by-Random-forest/images/image-8.png")
+image=mpimg.imread("E:/3rd Year/AI/project/Face-Recognition-by-Random-forest/images/image-114.png")
 image=image.reshape(1,-1)
-print(image.shape)
 y_pred= rf.predict(image)
-
 fig = plt.figure(figsize=(4,5))
 img = pics[10*(y_pred[0]),:,:]
 plt.imshow(img, cmap = plt.get_cmap('gray'))  
